@@ -16,7 +16,7 @@ public class Main {
             System.out.println("Selecciona una opcion: ");
             int opcion = consola.nextInt();
             if(opcion ==1){
-                zonaActual.explorar(jugador);
+                zonaActual.accionZona(jugador);
             } else if(opcion ==2){
                 jugador.mostrarEstado();
             } else if(opcion ==3){

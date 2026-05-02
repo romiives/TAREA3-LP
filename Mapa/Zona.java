@@ -1,9 +1,9 @@
 package mapa;
 import entidades.Jugador;
 public abstract class Zona{
-    protected String nombreZona;
+    protected String nombre;
     public String getNombre(){
-        return nombreZona;
+        return nombre;
     }
     /*
     ***
@@ -13,5 +13,5 @@ public abstract class Zona{
     ***
     ejecuta la accion de explorar en una zona del juego, donde cada zona tendra su propio comportamiento.
      */
-    public abstract void explorar(Jugador jugador);
+    public abstract void accionZona(Jugador jugador);
 }

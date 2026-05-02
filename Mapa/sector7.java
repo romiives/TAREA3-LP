@@ -2,7 +2,7 @@ package mapa;
 import entidades.Jugador;
 public class Sector7 extends Zona{
     public Sector7(){
-        this.nombreZona = "Sector 7";
+        this.nombre = "Sector 7";
     }
     /*
     **
@@ -13,7 +13,7 @@ public class Sector7 extends Zona{
     el jugador puede explorar el sector 7 y recuperar sus puntos de vida y magia.
      */
     @Override
-    public void explorar(Jugador jugador){
+    public void accionZona(Jugador jugador){
         System.out.println("\nEstas en la zona segura (Sector 7)");
         System.out.println("Recuperaras energia");
         jugador.restaurarPuntos();

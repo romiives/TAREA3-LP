@@ -1,22 +1,20 @@
 package entidades;
 public class Jugador{
-    private String nombreJugador;
-    private int puntosVidaMaximo;
-    private int puntosVidaActual;
-    private int puntosMagiaMaximos;
-    private int puntosMagiaActual;
+    private String nombre;
+    private int nivel;
+    private int xpActual;
+    private int chatarra;
+    private int limiteActual;
     private int ATK;
     private int MP;
-    private int nivel;
-    public Jugador(String nombreJugador){
-        this.nombreJugador = nombreJugador;
-        this.puntosVidaMaximo = 200;
-        this.puntosVidaActual = 200;
-        this.puntosMagiaMaximos = 50;
-        this.puntosMagiaActual = 50;
-        this.ATK = 15;
-        this.MP = 15;
+    public Jugador(String nombre){
+        this.nombre = nombre;
         this.nivel = 1;
+        this.xpActual = 0;
+        this.chatarra = 0;
+        this.limiteActual = 0;
+        this.ATK = 15;
+        this.MP = 50;
     }
     /*
     ***
@@ -28,12 +26,13 @@ public class Jugador{
      */
     public void mostrarEstado(){
         System.out.println("\n=== Estado del Jugador ===");
-        System.out.println("Nombre: "+nombreJugador);
+        System.out.println("Nombre: "+nombre);
         System.out.println("Nivel: "+nivel);
-        System.out.println("Vida: "+puntosVidaActual+"/"+puntosVidaMaximo);
-        System.out.println("Magia: "+puntosMagiaActual+"/"+puntosMagiaMaximos);
-        System.out.println("Fuerza: "+ ATK);
-        System.out.println("Magia: "+MP);
+        System.out.println("XP actual: "+xpActuaL);
+        System.out.println("Chatarra: "+chatarra);
+        System.out.println("Limite actual: "+limiteActual);
+        System.out.println("Fuerza(ATK): "+ ATK);
+        System.out.println("Magia(MP): "+ MP);
     }
     /*
     ***
@@ -44,24 +43,11 @@ public class Jugador{
     restaura los puntos de vida y magia
      */
     public void restaurarPuntos(){
-        this.puntosVidaActual = puntosVidaMaximo;
-        this.puntosMagiaActual = puntosMagiaMaximos;
+        this.MP=50;
+        
     }
     public int getPuntosVidaActual(){
-        return puntosMagiaActual;
+        return ATK;
     }
-    /*
-    ***
-    Parametro 1: int
-    ***
-    Tipo de Retorno: None
-    ***
-    quita puntos de vida del jugador segun el daño que recibio
-     */
-    public void dañoRecibido(int cantidadDaño){
-        this.puntosVidaActual -= cantidadDaño;
-        if(this.puntosVidaActual <0){
-            this.puntosMagiaActual = 0;
-        }
-    }
+    
 }
