@@ -5,6 +5,10 @@ public class Jugador{
     private int xpActual;
     private int chatarra;
     private int limiteActual;
+    private int puntosVidaMaximo;
+    private int puntosVidaActual;
+    private int puntosMagiaMaximo;
+    private int puntosMagiaActual;
     private int ATK;
     private int MP;
     public Jugador(String nombre){
@@ -13,8 +17,12 @@ public class Jugador{
         this.xpActual = 0;
         this.chatarra = 0;
         this.limiteActual = 0;
+        this.puntosVidaMaximo = 200;
+        this.puntosVidaActual = 200;
+        this.puntosMagiaMaximo = 50;
+        this.puntosMagiaActual = 50;
         this.ATK = 15;
-        this.MP = 50;
+        this.MP = 15;
     }
     /*
     ***
@@ -31,8 +39,10 @@ public class Jugador{
         System.out.println("XP actual: "+xpActuaL);
         System.out.println("Chatarra: "+chatarra);
         System.out.println("Limite actual: "+limiteActual);
+        System.out.println("Vida: "+puntosVidaActual+"/"+puntosVidaMaximo);
+        System.out.println("Puntos Magia: "+puntosMagiaActual+"/"+puntosMagiaMaximo);
         System.out.println("Fuerza(ATK): "+ ATK);
-        System.out.println("Magia(MP): "+ MP);
+        System.out.println("(MP): "+ MP);
     }
     /*
     ***
@@ -43,11 +53,50 @@ public class Jugador{
     restaura los puntos de vida y magia
      */
     public void restaurarPuntos(){
-        this.MP=50;
+        this.puntosVidaActual = puntosVidaMaximo;
+        this.puntosMagiaActual = puntosMagiaMaximo;
         
     }
-    public int getPuntosVidaActual(){
-        return ATK;
+    /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: None
+    ***
+    quita puntos de vidas segun daño recibido-
+    */
+    public void danioRecibido(int cantidadDanio){
+        this.puntosVidaActual-=cantidadDanio;
+        if(this.puntosVidaActual<0){
+            this.puntosVidaActual =0;
+        }
     }
-    
+    /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: None
+    ***
+    aumenta la experiencia.
+    */
+    public void recibirXP(int cantidadXP){
+        this.xpActuaL += cantidadXP;
+    }
+     /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: None
+    ***
+    aumenta la chatarra
+    */
+    public void recibirChatarra(int cantidadChatarra){
+        this.chatarra += cantidadChatarra;
+    }
+    public int getNivel(){
+        return nivel;
+    }
+    public int getPuntosVidaActual(){
+        return puntosVidaActual;
+    }
 }
