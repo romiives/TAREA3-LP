@@ -6,7 +6,7 @@ public class Estadisticas{
     private int mpMaximo;
     private int fuerza;
     private int magia;
-    public Estadisticas(int hpMaximo, int mpMaximo, int fuerza int magia){
+    public Estadisticas(int hpMaximo, int mpMaximo, int fuerza, int magia){
         this.hpMaximo = hpMaximo;
         this.hpActual = hpMaximo:
         this.mpMaximo = mpMaximo;
@@ -79,13 +79,13 @@ public class Estadisticas{
     aumenta estadistica segun el tipo de mejora.
     */
     public void aumentarStat(TipoStat tipoStat, int cantidad){
-        if(tipoStat == tipoStat.HP_MAX){
+        if(tipoStat == TipoStat.HP_MAX){
             this.hpMaximo +=cantidad;
             this.hpActual +=cantidad;
-        } else if(tipoStat == tipoStat.MP_MAX){
+        } else if(tipoStat == TipoStat.MP_MAX){
             this.mpMaximo +=cantidad;
             this.mpActual +=cantidad;
-        } else if(tipoStat == tipoStat.FUERZA){
+        } else if(tipoStat == TipoStat.FUERZA){
             this.fuerza += cantidad;
         }
     }
@@ -107,21 +107,4 @@ public class Estadisticas{
     public int getMagia(){
         return magia;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

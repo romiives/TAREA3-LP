@@ -1,7 +1,15 @@
 package entidades;
-public class EnemigoSalvaje extends Enemigo{
-    public EnemigoSalvaje(String nombre, int puntosVida, int ataque){
-        super(nombre, puntosVida, ataque);
+import java.util.ArrayList;
+import Componentes.*;
+public class EnemigoSalvaje extends Enemigo implements Vulnerable{
+    private ArrayList<Elemento> debilidades;
+    private ArrayList<Elemento> resistencia;
+    private ArrayList<Elemento> inmunidades;
+    public EnemigoSalvaje(String nombre, int puntosVida, int ataque, int xpRecompensa, int chatarraRecompensa){
+        super(nombre, puntosVida, ataque, xpRecompensa, chatarraRecompensa);
+        this.debilidades= new ArrayList<Elemento>();
+        this.resistencia= new ArrayList<Elemento>();
+        this.inmunidades= new ArrayList<Elemento>();
     }
     /*
     ***
@@ -12,6 +20,59 @@ public class EnemigoSalvaje extends Enemigo{
     le da chatarra al jugador cuando derrota a un enemigo salvaje.
     */
     public void giveChatarraRecompensa(Jugador jugador){
-        jugador.recibirChatarra(5);
+        jugador.recibirChatarra(chatarraRecompensa);
+    }
+    /*
+    ***
+    Parametro 1: elemento
+    ***
+    Tipo de Retorno: double
+    ***
+    evalua al enemigo.
+    */
+    public double evaluarDebilidad(Elemento elemento){
+        if(inmunidades.contains(elemento)){
+            return 0.0;
+        }
+        if(debilidades.contains(elemento)){
+            return 2.0;
+        }
+        if(resistencia.contains(elemento)){
+            return 0.5;
+        }
+        return 1.0;
+    }
+    /*
+    ***
+    Parametro 1: elemento
+    ***
+    Tipo de Retorno: None
+    ***
+    añade debilidad al enemigo.
+    */
+    public void agregarDebilidad(Elemento elemento){
+        debilidades.add(elemento);
+    }
+    /*
+    ***
+    Parametro 1: elemento
+    ***
+    Tipo de Retorno: None
+    ***
+    agrega resistencia al enemigo.
+    */ 
+    public void agregarResistencia(Elemento elemento){
+        resistencia.add(elemento);
+    }
+    /*
+    ***
+    Parametro 1: elemento
+    ***
+    Tipo de Retorno: None
+    ***
+    añade inmunidad al enemigo.
+    */
+    public void agregarInmunidad(){
+        inmunidades.add(elemento);
     }
 }

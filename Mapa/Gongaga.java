@@ -1,20 +1,20 @@
 package mapa;
 import java.util.ArrayList;
 import entidades.*;
+import Componentes.*;
 public class Gongaga extends Zona{
     private ArrayList<String> poolMaterias;
     public Gongaga(){
-        super();
         this.nombre = "Gongaga";
         this.nivelRequerido = 10;
-        this.poolMaterias = new ArrayList<String>();
-        poolMaterias.add("FUEGO");
-        poolMaterias.add("HIELO");
-        poolMaterias.add("RAYO");
-        poolMaterias.add("CURA");
-        enemigosDisponibles.add(new EnemigoSalvaje("Planta Carnivora",80,15));
-        enemigosDisponibles.add(new EnemigoSalvaje("Sapo de la Jungla",60,12));
-        enemigosDisponibles.add(new EnemigoSalvaje("Robot Centinela",100,20));
+        this.poolMaterias = new ArrayList<Materia>();
+        poolMaterias.add(new Materia("Fuego", Elemento.FUEGO);
+        poolMaterias.add(new Materia("Hielo", Elemento.HIELO);
+        poolMaterias.add(new Materia("Rayo", Elemento.RAYO));
+        poolMaterias.add(new Materia("Cura", Elemento.CURA));
+        enemigosDisponibles.add(new EnemigoSalvaje("Planta Carnivora",80, 15, 80, 50));
+        enemigosDisponibles.add(new EnemigoSalvaje("Sapo de la Jungla",60, 12, 70, 55));
+        enemigosDisponibles.add(new EnemigoSalvaje("Robot Centinela",100, 20, 100, 75));
     }
     /*
     ***
@@ -68,8 +68,9 @@ public class Gongaga extends Zona{
     genera materia aleatoria al jugador cuando esta explorando.
     */
    public void encontrarMateria(Jugador jugador){
-    int materiaAleatoria = (int)(Mathq.random()*poolMaterias.size());
-    String materiaEncontrada = poolMaterias.get(materiaAleatoria);
-    System.out.println("Cloud encontro una materia: "+materiaEncontrada);
+    int materiaAleatoria = (int)(Math.random()*poolMaterias.size());
+    Materia materiaEncontrada = poolMaterias.get(materiaAleatoria);
+    System.out.println("Cloud encontro una materia: "+materiaEncontrada.getNombre());
+    jugador.agregarMateria(materiaEncontrada);
    }
 }
