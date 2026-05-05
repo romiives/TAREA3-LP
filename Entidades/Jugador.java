@@ -7,12 +7,7 @@ public class Jugador{
     private int xpActual;
     private int chatarra;
     private int limiteActual;
-    private int puntosVidaMaximo;
-    private int puntosVidaActual;
-    private int puntosMagiaMaximo;
-    private int puntosMagiaActual;
-    private int ATK;
-    private int MP;
+    private Estadisticas stats;
     private ArrayList<Materia> mochila;
     private Arma busterSword;
     public Jugador(String nombre){
@@ -21,12 +16,7 @@ public class Jugador{
         this.xpActual = 0;
         this.chatarra = 0;
         this.limiteActual = 0;
-        this.puntosVidaMaximo = 200;
-        this.puntosVidaActual = 200;
-        this.puntosMagiaMaximo = 50;
-        this.puntosMagiaActual = 50;
-        this.ATK = 15;
-        this.MP = 15;
+        this.stats = new Estadisticas(200, 50, 15, 15);
         this.mochila = new ArrayList<Materia>();
         this.busterSword = new Arma();
     }
@@ -45,10 +35,10 @@ public class Jugador{
         System.out.println("XP actual: "+xpActuaL);
         System.out.println("Chatarra: "+chatarra);
         System.out.println("Limite actual: "+limiteActual);
-        System.out.println("Vida: "+puntosVidaActual+"/"+puntosVidaMaximo);
-        System.out.println("Puntos Magia: "+puntosMagiaActual+"/"+puntosMagiaMaximo);
-        System.out.println("Fuerza(ATK): "+ ATK);
-        System.out.println("(MP): "+ MP);
+        System.out.println("Vida: "+stats.getHpActual()+"/"+stats.getHpMaximo());
+        System.out.println("Puntos Magia: "+stats.getMpActual()+"/"+stats.getMpMaximo());
+        System.out.println("Fuerza(ATK): "+ stats.getFuerza());
+        System.out.println("(MP): "+ stats.getMagia());
         System.out.println("Materias en mochila: " + mochila.size());
         System.out.println("Materias equipadas en Buster Sword: " + busterSword.getCantidadMaterias());
     }
@@ -61,9 +51,7 @@ public class Jugador{
     restaura los puntos de vida y magia.
      */
     public void restaurarPuntos(){
-        this.puntosVidaActual = puntosVidaMaximo;
-        this.puntosMagiaActual = puntosMagiaMaximo;
-        
+        stats.restaurarTodo();
     }
     /*
     ***
@@ -74,12 +62,9 @@ public class Jugador{
     quita puntos de vidas segun daño recibido.
     */
     public void danioRecibido(int cantidadDanio){
-        this.puntosVidaActual-=cantidadDanio;
-        if(this.puntosVidaActual<0){
-            this.puntosVidaActual =0;
-        }
-        this.limiteActual += cantidadDanio/2;
-        if(this.limiteActual>100){
+        stats.recibirDanio(cantidadDanio);
+        this.limiteActual += cantidadDanio / 2;
+        if(this.limiteActual > 100){
             this.limiteActual = 100;
         }
     }
@@ -103,10 +88,20 @@ public class Jugador{
     ***
     Tipo de Retorno: None
     ***
-    aumenta la experiencia.
+    aumenta la experiencia y el nivel.
     */
     public void recibirXP(int cantidadXP){
         this.xpActuaL += cantidadXP;
+        int xpNecesaria = 10*nivel;
+        if(this.xpActuaL >= xpNecesaria){
+            this.xpActuaL = 0;
+            this.nivel++;
+            stats.aumentarStat(TipoStat.HP_MAX, 10);
+            stats.aumentarStat(TipoStat.MP_MAX, 5);
+            stats.aumentarStat(tipoStat.FUERZA, 4);
+            stats.aumentarMagia(6);
+            System.out.println("Cloud ha subido de nivel al "+nivel);
+        }
     }
      /*
     ***
@@ -118,6 +113,21 @@ public class Jugador{
     */
     public void recibirChatarra(int cantidadChatarra){
         this.chatarra += cantidadChatarra;
+    }
+    /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: boolean
+    ***
+    quita chatarra si el jugador tiene mucho.
+    */
+    public boolean gastarChatarra(int costo){
+        if(this.chatarra >=costo){
+            this.chatarra -=costo;
+            return true;
+        }
+        return false;
     }
     /*
     ***
@@ -142,20 +152,43 @@ public class Jugador{
     public void equiparMateria(Materia materia){
         busterSword.equiparMateria(materia);
     }
+    /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: None
+    ***
+    Cura al jugador sin superar la vida maxima de este.
+    */
+    public void curarVida(int cantidadCura){
+        stats.curarVida(cantidadCura);
+    }
+    /*
+    ***
+    Parametro 1: None
+    ***
+    Tipo de Retorno: None
+    ***
+    Aplica el reinicio por derrota en la zona peligrosa.
+    */
+    public void aplicarDerrota(){
+        this.chatarra =0;
+        this.mochila.clear();
+        this.restaurarPuntos();
+        System.out.println("Se perdio la chatarra y las materias de la mochila.");
+        System.out.println("Se mantiene las materias equipadas en el arma");
+    }
     public int getNivel(){
         return nivel;
     }
     public int getPuntosVidaActual(){
-        return puntosVidaActual;
+        return stats.getHpActual();
     }
-    public int getATK(){
-        return ATK;
+    public int getLimiteActual(){
+        return limiteActual;
     }
-    public int getMP(){
-        return MP;
-    }
-    public int getPuntosMagiaActual(){
-        return puntosMagiaActual;
+    public Estadisticas getStats(){
+        return stats;
     }
     public ArrayList<Materia> getMochila(){
         return mochila;
@@ -163,23 +196,11 @@ public class Jugador{
     public Arma getBusterSword(){
         return busterSword;
     }
-    public int getLimiteActual(){
-        return limiteActual
-    }
-    public void setLimiteActual(int limiteActual){
-        this.limiteActual = limiteActual;
-    }
-    public int getPuntosMagiaMaximo(){
-        return puntosMagiaMaximo;
-    }
-    public int getPuntosVidaMaximo(){
-        return puntosVidaMaximo;
-    }
-    public int getChatarra(){
-        return chatarra;
+    public int getCantidadMateriasEquipadas(){
+        return busterSword.getCantidadMaterias();
     }
     /*
-    Clase Arma
+    Clase Arma anidada
     */
     public class Arma{
         private String nombre;
@@ -212,7 +233,7 @@ public class Jugador{
         calcula el daño estandar fisico sin coste de MP y usando el AKT del jugador
         */
         public int calcularDanioFisico(){
-            return (int)(ATK * 1.25);
+            return (int)(stats.getFuerza()* 1.25);
         }
         /*
         Parametro 1: elemento
@@ -229,9 +250,8 @@ public class Jugador{
                 }
             }
             int costoMP = 10+(5*cantidad);
-            if(puntosMagiaActual >= costoMP){
-                puntosMagiaActual -= costoMP;
-                return (int)(MP*(1+(0.5*cantidad)));
+            if(stats.gastarMagia(costoMP)){
+                return (int)(stats.getMagia*(1.0+(0.5*cantidad)));
             }
             System.out.println("No hay suficiente MP");
             return 0;
@@ -247,16 +267,13 @@ public class Jugador{
         public int calculaDanioLimite(){
             if(limiteActual == 100){
                 limiteActual = 0;
-                return ATK*5;
+                return stats.getFuerza()*5;
             }
             System.out.println("Limite no disponible para efectuar el ataque");
             return 0;
         }
         public int getCantidadMaterias(){
             return materiasEquipadas.size();
-        }
-        public ArrayList<Materia> getMateriasEquipadas(){
-            return materiasEquipadas;
         }
    }
 }

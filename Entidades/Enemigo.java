@@ -11,8 +11,24 @@ public abstract class Enemigo{
         this.xpRecompensa = xpRecompensa;
         this.chatarraRecompensa = chatarraRecompensa; 
     }
-    public String getNombre(){
-        return nombre;
+    /*
+    ***
+    Parametro 1: jugador
+    ***
+    Tipo de Retorno: None
+    ***
+    ejecuta el ataque del enemigo hacia el jugador con un 85% de acierto.
+    */
+    public void atacar(Jugador jugador){
+        int probabilidad = (int)(Math.ramdon() *100)+1;
+        if(probabilidad<=85){
+            int danio = (int)(stats.getFuerza()*1.25);
+            System.out.println(nombre + "ataca a Cloud");
+            jugador.danioRecibido(danio);
+            System.out.println("Cloud acaba de recibir " + danio + "de daño");
+        }else{
+            System.out.println(nombre + "Ataque mal ejecutado");
+        }
     }
     /*
     ***
@@ -20,45 +36,31 @@ public abstract class Enemigo{
     ***
     Tipo de Retorno: None
     ***
-    ejecuta el ataque del enemigo hacia el jugador
+    entrega experencia al jugador cuando derrota a un enemigo
     */
-   public void atacar(Jugador jugador){
-    int danio = stats.getFuerza();
-    System.out.println(nombre + "ataca a Cloud");
-    jugador.danioRecibido(danio);
-    System.out.println("Cloud acaba de recibir " + danio + "de daño");
-   }
-   /*
+    public void giveXpRecompensa(Jugador jugador){
+        jugador.recibirXP(xpRecompensa);
+    }
+    /*
     ***
-    Parametro 1: jugador
+    Parametro 1: None
+    ***
+    Tipo de Retorno: int
+    ***
+    retorno la vida del enemigo actual.
+    */
+    public int getHpActual(){
+        return stats.getHpActual();
+    }
+    /*
+    ***
+    Parametro 1: int
     ***
     Tipo de Retorno: None
     ***
-    entrega experencia al jugador cuando derrota a un enemigo
+    Reduce la vida del enemigo dependiendo del daño que recibe de parte del jugador.
     */
-   public void giveXpRecompensa(Jugador jugador){
-    jugador.recibirXP(xpRecompensa);
-   }
-   /*
-   ***
-   Parametro 1: None
-   ***
-   Tipo de Retorno: int
-   ***
-   retorno la vida del enemigo actual.
-   */
-   public int getHpActual(){
-    return stats.getHpActual;
-   }
-   /*
-   ***
-   Parametro 1: int
-   ***
-   Tipo de Retorno: None
-   ***
-   Reduce la vida del enemigo dependiendo del daño que recibe de parte del jugador.
-   */
-   public void recibirDanio(int cantidadDanio){
-    stats.recibirDanio(cantidadDanio);
-   }
+    public void recibirDanio(int cantidadDanio){
+        stats.recibirDanio(cantidadDanio);
+    }
 }

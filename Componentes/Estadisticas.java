@@ -89,6 +89,17 @@ public class Estadisticas{
             this.fuerza += cantidad;
         }
     }
+    /*
+    ***
+    Parametro 1: int
+    ***
+    Tipo de Retorno: None
+    ***
+    aumenta la magia del jugador.
+    */
+    public void aumentarMagia(int cantidad){
+        this.magia += cantidad;
+    }
     public int getHpActual(){
         return hpActual;
     }

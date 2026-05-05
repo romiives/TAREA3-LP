@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import Componentes.*;
 public class EnemigoSalvaje extends Enemigo implements Vulnerable{
     private ArrayList<Elemento> debilidades;
-    private ArrayList<Elemento> resistencia;
+    private ArrayList<Elemento> resistencias;
     private ArrayList<Elemento> inmunidades;
     public EnemigoSalvaje(String nombre, int puntosVida, int ataque, int xpRecompensa, int chatarraRecompensa){
         super(nombre, puntosVida, ataque, xpRecompensa, chatarraRecompensa);
         this.debilidades= new ArrayList<Elemento>();
-        this.resistencia= new ArrayList<Elemento>();
+        this.resistencias= new ArrayList<Elemento>();
         this.inmunidades= new ArrayList<Elemento>();
     }
     /*
@@ -37,7 +37,7 @@ public class EnemigoSalvaje extends Enemigo implements Vulnerable{
         if(debilidades.contains(elemento)){
             return 2.0;
         }
-        if(resistencia.contains(elemento)){
+        if(resistencias.contains(elemento)){
             return 0.5;
         }
         return 1.0;
