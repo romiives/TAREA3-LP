@@ -107,43 +107,62 @@ public abstract class Enemigo{
                         ((Sephiroth)enemigo).reiniciarSuperNova();
                     }
                 }
+            } else if(opcion==7 && permitirHuir){
+                int probabilidad = (int)(Math.ramdon()*100)+1;
+                if(probabilidad <=50){
+                    System.out.println("Cloud ha logrado huir");
+                    return true;
+                } else{
+                    System.out.println("Cloud no pudo huir");
+                }
+            } else{
+                System.out.println("Opcion invalida");
             }
-
- 
+            if(enemigo.getHpActual()<=0){
+                System.out.println(enemigo.getNombre()+"ha sido derrotado");
+                enemigo.giveXpRecompensa(jugador);
+                if(enemigo instanceof EnemigoSalvaje){
+                    ((EnemigoSalvaje)enemigo).giveChatarraraRecomenpensa(jugador);
+                }
+                return true;
+            }
+            if(enemigo instanceof Sephiroth){
+                ((Sephiroth)enemigo).lanzarSuperNova(jugador);
+            }else{
+                enemigo.atacar(jugador);
+            }
         }
+        return jugador.getPuntosVidaActual()>0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*
+    ***
+    Parametro 1: jugador
+    Parametro 2: enemigo
+    Parametro 3: elemento
+    ***
+    Tipo de Retorno: None
+    ***
+    efectua la magia y la debilidad, resistencia o la inmunidad.
+     */
+    public static void usarMagia(Jugador jugador, Enemigo enemigo, Elemento elemento){
+        int danioBase = jugador.getBusterSword().calcularDanioMagico(elemento);
+        if(danioBase<=0){
+            return;
+        }
+        double multiplicador = 1.0;
+        if(enemigo instanceof Vulnerable){
+            multiplicador = ((Vulnerable)enemigo).evaluarDebilidad(elemento);
+        }
+        int danioFinal = (int)(danioBase*multiplicador);
+        enemigo.recibirDanio(danioFinal);
+        jugador.cargarLimitePorDanio(danioFinal);
+        System.out.println("Daño base: "+danioBase);
+        System.out.println("Elemental: "+multiplicador);
+        System.out.println("Daño final: "+danioFinal);
+    }
+    public String getNombre(){
+        return nombre;
+    }
     /*
     ***
     Parametro 1: None
