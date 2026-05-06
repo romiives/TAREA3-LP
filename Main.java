@@ -16,7 +16,7 @@ public class Main {
             System.out.println("4. Ir al Nucleo del Planeta");
             System.out.println("5. Ver estado del jugador");
             System.out.println("6. Salir");
-            System.out.println("Selecciona una opcion: ");
+            System.out.print("Selecciona una opcion: ");
             int opcion = consola.nextInt();
             if(opcion ==1){
                 zonaActual.accionZona(jugador);
@@ -39,18 +39,18 @@ public class Main {
                 } else{
                     System.out.println("No tienes el nivel necesario para entrar");
                 }
-            } else if(opcion ==){
+            } else if(opcion ==5){
                 jugador.mostrarEstado();
-            } else if(opcion ==){
+            } else if(opcion ==6){
                 juegoEjecucion = false;
-                System.out.println("Ha salido del juego");
+                System.out.println("Has salido del juego");
             } else{
                 System.out.println("Opción invalida");
             }
             if(jugador.getPuntosVidaActual() <=0){
                 System.out.println("\nHas sido derrotado");
                 System.out.println("Regresando al Sector 7");
-                jugador.restaurarPuntos();
+                jugador.aplicarDerrota();
                 zonaActual = new Sector7();
             }
         }
