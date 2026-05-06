@@ -7,7 +7,21 @@ public class NucleoPlaneta extends Zona{
         this.nombre = "Nucleo Planeta";
         this.nivelRequerido = 20; 
         this.materiasMinimasRequeridas = 2;
-        enemigosDisponibles.add(new Sephiroth());
+    }
+    /*
+    ***
+    Parametro 1: jugador
+    ***
+    Tipo de Retorno: boolean
+    ***
+    validacion para estar en esta zona
+    */
+    @Override
+    public boolean validarAcceso(Jugador jugador){
+        if(jugador.getNivel()>= nivelRequerido && jugador.getCantidadMateriasEquipadas() >= materiasMinimasRequeridas){
+            return true;
+        }
+        return false;
     }
     /*
     ***
@@ -19,19 +33,14 @@ public class NucleoPlaneta extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
-        System.out.println("\nTe encuentras en el Nucleo Planeta");
-        iniciarCombate(jugador);
+        Sephiroth sephiroth =new Sephiroth();
+        boolean resultado=Enemigo.iniciarCombate(jugador, sephiroth, false);
+        if(resultado && jugador.getPuntosVidaActual()>0){
+            System.out.println("\nCloud ha salvado el planeta, HAZ GANADO.");
+            System.out.println("Sephiroth fue derrotado.");
+            System.out.println("Nivel final de Cloud: " +jugador.getNivel());
+            System.out.println("Fin del juego.");
+            System.exit(0);
+        }
     }
-    /*
-    ***
-    Parametro 1: jugador
-    ***
-    Tipo de Retorno: None
-    ***
-    inicia el combate final contra sephiroth
-    */
-   public void iniciarCombate(Jugador jugador){
-    System.out.println("Ha iniciado el combate");
-    
-   }
 }
