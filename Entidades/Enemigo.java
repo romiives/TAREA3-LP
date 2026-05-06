@@ -1,4 +1,5 @@
 package entidades;
+import java.util.Scanner;
 import Componentes.*;
 public abstract class Enemigo{
     protected String nombre;
@@ -27,7 +28,7 @@ public abstract class Enemigo{
             jugador.danioRecibido(danio);
             System.out.println("Cloud acaba de recibir " + danio + "de daño");
         }else{
-            System.out.println(nombre + "Ataque mal ejecutado");
+            System.out.println(nombre + "ataque mal ejecutado");
         }
     }
     /*
@@ -43,17 +44,6 @@ public abstract class Enemigo{
     }
     /*
     ***
-    Parametro 1: None
-    ***
-    Tipo de Retorno: int
-    ***
-    retorno la vida del enemigo actual.
-    */
-    public int getHpActual(){
-        return stats.getHpActual();
-    }
-    /*
-    ***
     Parametro 1: int
     ***
     Tipo de Retorno: None
@@ -62,5 +52,107 @@ public abstract class Enemigo{
     */
     public void recibirDanio(int cantidadDanio){
         stats.recibirDanio(cantidadDanio);
+    }
+    /*
+    ***
+    Parametro 1: jugador
+    Parametro 2: enemigo
+    Parametro 3: boolean
+    ***
+    Tipo de Retorno: boolean
+    ***
+    inicia el combate entre cloud y un enemigo, retornado un boolean segun el caso.
+     */
+    public static boolean iniciarCombate(Jugador jugador, Enemigo enemigo, boolean permitirHuir){
+        Scanner consola = new Scanner(System.in);
+        while(jugador.getPuntosVidaActual()>0 && enemigo.getHpActual()>0){
+            System.out.println("\n=== Combate de Cloud con Enemigo ===");
+            System.out.println("Cloud HP: " +jugador.getPuntosVidaActual());
+            System.out.println(enemigo.getNombre() +" HP: "+enemigo.getHpActual());
+            System.out.println("Limite: " +jugador.getLimiteActual() +"/100");
+            System.out.println("1. Ataque Fisico");
+            System.out.println("2. Magia FUEGO");
+            System.out.println("3. Magia HIELO");
+            System.out.println("4. Magia RAYO");
+            System.out.println("5. Cura");
+            System.out.println("6. Ataque Limite");
+            if(permitirHuir){
+                System.out.println("7. Huir");
+            }
+            System.out.print("Opcion: ");
+            int opcion = consola.nextInt();
+            if(opcion == 1){
+                int danio = jugador.getBusterSword().calcularDanioFisico();
+                enemigo.recibirDanio(danio);
+                jugador.cargarLimitePorDanio(danio);
+                System.out.println("Cloud ha hecho "+danio+"de daño.");
+            } else if(opcion==2){
+                usarMagia(jugador, enemigo, Elemento.FUEGO);
+            } else if(opcion==3){
+                usarMagia(jugador, enemigo, Elemento.HIELO);
+            } else if(opcion==4){
+                usarMagia(jugador, enemigo, Elemento.RAYO);
+            } else if(opcion==5){
+                int cura = jugador.getBusterSword().calcularDanioMagico(Elemento.CURA);
+                if(cura>0){
+                    jugador.curarVida(cura);
+                    System.out.println("Cloud ha recuperado "+cura+"de HP");   
+                }
+            } else if(opcion==6){
+                int danio = jugador.getBusterSword().calculaDanioLimite();
+                if(danio>0){
+                    enemigo.recibirDanio(danio);
+                    System.out.println("Cloud ha hecho uso de un ataque limite e hizo "+danio+"de daño");
+                    if(enemigo instanceof Sephiroth){
+                        ((Sephiroth)enemigo).reiniciarSuperNova();
+                    }
+                }
+            }
+
+ 
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    ***
+    Parametro 1: None
+    ***
+    Tipo de Retorno: int
+    ***
+    retorno la vida del enemigo actual.
+    */
+    public int getHpActual(){
+        return stats.getHpActual();
     }
 }
