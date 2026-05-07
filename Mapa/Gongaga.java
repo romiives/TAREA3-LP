@@ -6,7 +6,7 @@ public class Gongaga extends Zona{
     private ArrayList<Materia> poolMaterias;
     public Gongaga(){
         this.nombre = "Gongaga";
-        this.nivelRequerido = 10;
+        this.nivelRequerido = 5;
         this.poolMaterias = new ArrayList<Materia>();
         poolMaterias.add(new Materia("Fuego", Elemento.FUEGO));
         poolMaterias.add(new Materia("Hielo", Elemento.HIELO));
