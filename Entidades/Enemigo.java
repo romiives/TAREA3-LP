@@ -108,7 +108,7 @@ public abstract class Enemigo{
                     }
                 }
             } else if(opcion==7 && permitirHuir){
-                int probabilidad = (int)(Math.randon()*100)+1;
+                int probabilidad = (int)(Math.random()*100)+1;
                 if(probabilidad <=50){
                     System.out.println("Cloud ha logrado huir");
                     return true;
