@@ -66,9 +66,9 @@ public abstract class Enemigo{
     public static boolean iniciarCombate(Jugador jugador, Enemigo enemigo, boolean permitirHuir){
         Scanner consola = new Scanner(System.in);
         while(jugador.getPuntosVidaActual()>0 && enemigo.getHpActual()>0){
-            System.out.println("\n=== Combate de Cloud con Enemigo ===");
-            System.out.println("Cloud HP: " +jugador.getPuntosVidaActual());
-            System.out.println(enemigo.getNombre() +" HP: "+enemigo.getHpActual());
+            System.out.println("\n--- TU TURNO ---");
+            System.out.println("Cloud HP: " +jugador.getPuntosVidaActual()+"/"+jugador.getStats().getHpMaximo());
+            System.out.println("Enemigo: "+enemigo.getHpActual()+" HP restante");
             System.out.println("Limite: " +jugador.getLimiteActual() +"/100");
             System.out.println("1. Ataque Fisico");
             System.out.println("2. Magia FUEGO");
@@ -119,7 +119,7 @@ public abstract class Enemigo{
                 System.out.println("Opcion invalida");
             }
             if(enemigo.getHpActual()<=0){
-                System.out.println(enemigo.getNombre()+"ha sido derrotado");
+                System.out.println(enemigo.getNombre()+" ha sido derrotado");
                 enemigo.giveXpRecompensa(jugador);
                 if(enemigo instanceof EnemigoSalvaje){
                     ((EnemigoSalvaje)enemigo).giveChatarraRecompensa(jugador);
@@ -129,6 +129,7 @@ public abstract class Enemigo{
             if(enemigo instanceof Sephiroth){
                 ((Sephiroth)enemigo).lanzarSuperNova(jugador);
             }else{
+                System.out.println("\n--- TURNO ENEMIGO ---");
                 enemigo.atacar(jugador);
             }
         }

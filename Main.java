@@ -9,7 +9,11 @@ public class Main {
         boolean juegoEjecucion = true;
         System.out.println("=== JUEGO - La Amenaza de Sephiroth ===");
         while(juegoEjecucion){
-            System.out.println("\nTe encuentras en: " + zonaActual.getNombre());
+            System.out.println("\n======================================");
+            System.out.println("ZONA: "+zonaActual.getNombre()+" | NIVEL: "+jugador.getNivel());
+            System.out.println("HP: "+jugador.getStats().getHpActual()+"/"+ jugador.getStats().getHpMaximo()+" | MP: "+jugador.getStats().getMpActual()+"/"+jugador.getStats().getMpMaximo());
+            System.out.println("EXP: "+jugador.getXpActual()+"/"+(10*jugador.getNivel())+" | MATERIAS EQUIPADAS: "+jugador.getCantidadMateriasEquipadas()+"/5");
+            System.out.println("======================================");
             System.out.println("1. Explorar zona actual");
             System.out.println("2. Ir a sector 7");
             System.out.println("3. Ir a Gongaga");

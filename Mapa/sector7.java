@@ -46,6 +46,8 @@ public class Sector7 extends Zona{
     */
     public void iniciarSimulador(Jugador jugador){
         EnemigoSimulador soldado = new EnemigoSimulador();
+        System.out.println("\n>>> INICIANDO SIMULADOR DE COMBATE <<<");
+        System.out.println("Aparece un Soldado Holografico (HP: 50)");
         Enemigo.iniciarCombate(jugador, soldado, false);
         if(jugador.getPuntosVidaActual()<=0){
             jugador.restaurarPuntos();

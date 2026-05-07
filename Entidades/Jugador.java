@@ -27,20 +27,19 @@ public class Jugador{
     Tipo de Retorno: None
     ***
     muestra el estado actual del jugador, su vida, magia, nivel, experiencia, chatarra y el limite.
-     */
+    */
     public void mostrarEstado(){
-        System.out.println("\n=== Estado del Jugador ===");
-        System.out.println("Nombre: "+nombre);
-        System.out.println("Nivel: "+nivel);
-        System.out.println("XP actual: "+xpActual);
-        System.out.println("Chatarra: "+chatarra);
-        System.out.println("Limite actual: "+limiteActual);
-        System.out.println("Vida: "+stats.getHpActual()+"/"+stats.getHpMaximo());
-        System.out.println("Puntos Magia: "+stats.getMpActual()+"/"+stats.getMpMaximo());
-        System.out.println("Fuerza(ATK): "+ stats.getFuerza());
-        System.out.println("(MP): "+ stats.getMagia());
-        System.out.println("Materias en mochila: " + mochila.size());
-        System.out.println("Materias equipadas en Buster Sword: " + busterSword.getCantidadMaterias());
+        System.out.println("\n======================================");
+        System.out.println("ZONA ACTUAL");
+        System.out.println("======================================");
+        System.out.println("Nombre: " +nombre);
+        System.out.println("Nivel: " +nivel);
+        System.out.println("HP: "+stats.getHpActual()+"/"+stats.getHpMaximo()+" | MP: "+stats.getMpActual()+"/"+stats.getMpMaximo());
+        System.out.println("EXP: "+xpActual+"/"+(10 * nivel)+" | MATERIAS EQUIPADAS: "+busterSword.getCantidadMaterias()+"/5");
+        System.out.println("--------------------------------------");
+        System.out.println("Fuerza: "+stats.getFuerza()+" | Magia: "+stats.getMagia());
+        System.out.println("Arma equipada: Buster Sword");
+        System.out.println("--------------------------------------");
     }
     /*
     ***
@@ -100,7 +99,11 @@ public class Jugador{
             stats.aumentarStat(TipoStat.MP_MAX, 5);
             stats.aumentarStat(TipoStat.FUERZA, 4);
             stats.aumentarMagia(6);
-            System.out.println("Cloud ha subido de nivel al "+nivel);
+            stats.restaurarTodo();
+            System.out.println("\n¡NIVEL AUMENTADO!");
+            System.out.println("Cloud ha alcanzado el Nivel " +nivel);
+            System.out.println("Tus estadisticas han aumentado");
+            
         }
     }
     /*
@@ -199,6 +202,9 @@ public class Jugador{
     public int getCantidadMateriasEquipadas(){
         return busterSword.getCantidadMaterias();
     }
+    public int getXpActual(){
+        return xpActual;
+    }
     /*
     Clase Arma anidada
     */
@@ -248,6 +254,10 @@ public class Jugador{
                 if(materiasEquipadas.get(i).getElemento()==elemento){
                     cantidad++;
                 }
+            }
+            if(cantidad ==0){
+                System.out.println("No hay una materia de este elemento");
+                return 0;
             }
             int costoMP = 10+(5*cantidad);
             if(stats.gastarMagia(costoMP)){
