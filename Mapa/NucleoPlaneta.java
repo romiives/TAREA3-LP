@@ -1,5 +1,5 @@
-package mapa;
-import entidades.*;
+package Mapa;
+import Entidades.*;
 public class NucleoPlaneta extends Zona{
     private int materiasMinimasRequeridas;
     public NucleoPlaneta(){

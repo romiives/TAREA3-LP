@@ -1,4 +1,4 @@
-package entidades;
+package Entidades;
 public class EnemigoSimulador extends Enemigo{
     public EnemigoSimulador(){
         super("Soldado Comun", 50, 15, generarXP(), 0);

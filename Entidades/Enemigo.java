@@ -1,4 +1,4 @@
-package entidades;
+package Entidades;
 import java.util.Scanner;
 import Componentes.*;
 public abstract class Enemigo{

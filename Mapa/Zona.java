@@ -1,7 +1,7 @@
-package mapa;
+package Mapa;
 import java.util.ArrayList;
-import entidades.Jugador;
-import entidades.Enemigo;
+import Entidades.Jugador;
+import Entidades.Enemigo;
 public abstract class Zona{
     protected String nombre;
     protected int nivelRequerido;

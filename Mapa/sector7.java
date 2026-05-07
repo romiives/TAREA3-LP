@@ -1,6 +1,6 @@
-package mapa;
+package Mapa;
 import java.util.Scanner;
-import entidades.*;
+import Entidades.*;
 import Componentes.*;
 public class Sector7 extends Zona{
     public Sector7(){

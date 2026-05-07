@@ -1,6 +1,6 @@
-package mapa;
+package Mapa;
 import java.util.ArrayList;
-import entidades.*;
+import Entidades.*;
 import Componentes.*;
 public class Gongaga extends Zona{
     private ArrayList<Materia> poolMaterias;

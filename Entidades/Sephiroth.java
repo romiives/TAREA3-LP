@@ -1,4 +1,4 @@
-package entidades;
+package Entidades;
 public class Sephiroth extends Enemigo{
     private int contadorSuperNova;
     public Sephiroth(){

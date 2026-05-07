@@ -1,4 +1,4 @@
-package entidades;
+package Entidades;
 import java.util.ArrayList;
 import Componentes.*;
 public class EnemigoSalvaje extends Enemigo implements Vulnerable{

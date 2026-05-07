@@ -1,6 +1,6 @@
 import java.util.Scanner;
-import mapa.*;
-import entidades.*;
+import Mapa.*;
+import Entidades.*;
 public class Main {
     public static void main(String[] datos){
         Scanner consola = new Scanner(System.in);
