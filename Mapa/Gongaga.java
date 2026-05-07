@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import entidades.*;
 import Componentes.*;
 public class Gongaga extends Zona{
-    private ArrayList<String> poolMaterias;
+    private ArrayList<Materia> poolMaterias;
     public Gongaga(){
         this.nombre = "Gongaga";
         this.nivelRequerido = 10;
         this.poolMaterias = new ArrayList<Materia>();
-        poolMaterias.add(new Materia("Fuego", Elemento.FUEGO);
-        poolMaterias.add(new Materia("Hielo", Elemento.HIELO);
+        poolMaterias.add(new Materia("Fuego", Elemento.FUEGO));
+        poolMaterias.add(new Materia("Hielo", Elemento.HIELO));
         poolMaterias.add(new Materia("Rayo", Elemento.RAYO));
         poolMaterias.add(new Materia("Cura", Elemento.CURA));
     }
@@ -61,7 +61,7 @@ public class Gongaga extends Zona{
         for(int posicion=0; posicion<cantidadEnemigos; posicion++){
             grupoEnemigos.add(crearEnemigoAleatorio());
         }
-        System.out.println("Aparecieron "+grupoEnemigos.size()+ "enemigo(s)");
+        System.out.println("Aparecieron "+grupoEnemigos.size()+ " enemigo(s)");
         for(int posicion=0; posicion<grupoEnemigos.size(); posicion++){
             System.out.println("- "+grupoEnemigos.get(posicion).getNombre());
         }
@@ -118,8 +118,8 @@ public class Gongaga extends Zona{
    ***
    genera la experiencia entre 80-100 para los enemigos.
    */
-   public in generarXpSalvaje(){
-    return 80 +(int)(Math,random()*21);
+   public int generarXpSalvaje(){
+    return 80 +(int)(Math.random()*21);
    }
    /*
    ***
@@ -127,7 +127,7 @@ public class Gongaga extends Zona{
    ***
    Tipo de Retorno: int
    ***
-   genera la chatarra entre 50-70 para los enemigos.
+   genera la chatarra entre 50-75 para los enemigos.
    */
    public int generarChatarraSalvaje(){
     return 50+(int)(Math.random()*26);

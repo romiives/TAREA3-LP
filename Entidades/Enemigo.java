@@ -21,14 +21,14 @@ public abstract class Enemigo{
     ejecuta el ataque del enemigo hacia el jugador con un 85% de acierto.
     */
     public void atacar(Jugador jugador){
-        int probabilidad = (int)(Math.ramdon() *100)+1;
+        int probabilidad = (int)(Math.random() *100)+1;
         if(probabilidad<=85){
             int danio = (int)(stats.getFuerza()*1.25);
-            System.out.println(nombre + "ataca a Cloud");
+            System.out.println(nombre + " ataca a Cloud");
             jugador.danioRecibido(danio);
-            System.out.println("Cloud acaba de recibir " + danio + "de daño");
+            System.out.println("Cloud acaba de recibir " + danio + " de daño");
         }else{
-            System.out.println(nombre + "ataque mal ejecutado");
+            System.out.println(nombre + " ataque mal ejecutado, ha fallado el ataque");
         }
     }
     /*
@@ -85,7 +85,7 @@ public abstract class Enemigo{
                 int danio = jugador.getBusterSword().calcularDanioFisico();
                 enemigo.recibirDanio(danio);
                 jugador.cargarLimitePorDanio(danio);
-                System.out.println("Cloud ha hecho "+danio+"de daño.");
+                System.out.println("Cloud ha hecho "+danio+" de daño");
             } else if(opcion==2){
                 usarMagia(jugador, enemigo, Elemento.FUEGO);
             } else if(opcion==3){
@@ -96,13 +96,13 @@ public abstract class Enemigo{
                 int cura = jugador.getBusterSword().calcularDanioMagico(Elemento.CURA);
                 if(cura>0){
                     jugador.curarVida(cura);
-                    System.out.println("Cloud ha recuperado "+cura+"de HP");   
+                    System.out.println("Cloud ha recuperado "+cura+" de HP");   
                 }
             } else if(opcion==6){
-                int danio = jugador.getBusterSword().calculaDanioLimite();
+                int danio = jugador.getBusterSword().calcularDanioLimite();
                 if(danio>0){
                     enemigo.recibirDanio(danio);
-                    System.out.println("Cloud ha hecho uso de un ataque limite e hizo "+danio+"de daño");
+                    System.out.println("Cloud ha hecho uso de un ataque limite e hizo "+danio+" de daño");
                     if(enemigo instanceof Sephiroth){
                         ((Sephiroth)enemigo).reiniciarSuperNova();
                     }
@@ -122,7 +122,7 @@ public abstract class Enemigo{
                 System.out.println(enemigo.getNombre()+"ha sido derrotado");
                 enemigo.giveXpRecompensa(jugador);
                 if(enemigo instanceof EnemigoSalvaje){
-                    ((EnemigoSalvaje)enemigo).giveChatarraraRecomenpensa(jugador);
+                    ((EnemigoSalvaje)enemigo).giveChatarraRecompensa(jugador);
                 }
                 return true;
             }

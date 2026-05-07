@@ -3,8 +3,8 @@ import entidades.*;
 public class NucleoPlaneta extends Zona{
     private int materiasMinimasRequeridas;
     public NucleoPlaneta(){
-        super()
-        this.nombre = "Nucleo Planeta";
+        super();
+        this.nombre = "Nucleo del Planeta";
         this.nivelRequerido = 20; 
         this.materiasMinimasRequeridas = 2;
     }

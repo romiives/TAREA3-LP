@@ -7,7 +7,7 @@ public abstract class Zona{
     protected int nivelRequerido;
     protected ArrayList<Enemigo> enemigosDisponibles;
     public Zona(){
-        this.enemigosDisponibles = new ArrayList<Enemigos>();
+        this.enemigosDisponibles = new ArrayList<Enemigo>();
     }
     public String getNombre(){
         return nombre;
@@ -25,7 +25,7 @@ public abstract class Zona{
     ***
     Parametro 1: jugador
     ***
-    Tipo de Retonor: boolean
+    Tipo de Retorno: boolean
     ***
     Comprueba que el jugador tenga el nivel necesario para entrar a una zona.
     */

@@ -1,7 +1,7 @@
 package entidades;
 public class EnemigoSimulador extends Enemigo{
     public EnemigoSimulador(){
-        super("Soldado Común", 50, 15, generarXP(), 0);
+        super("Soldado Comun", 50, 15, generarXP(), 0);
     }
     private static int generarXP(){
         return 15+(int)(Math.random()*6);

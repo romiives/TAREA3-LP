@@ -8,7 +8,7 @@ public class Estadisticas{
     private int magia;
     public Estadisticas(int hpMaximo, int mpMaximo, int fuerza, int magia){
         this.hpMaximo = hpMaximo;
-        this.hpActual = hpMaximo:
+        this.hpActual = hpMaximo;
         this.mpMaximo = mpMaximo;
         this.mpActual = mpMaximo;
         this.fuerza = fuerza;
@@ -60,7 +60,7 @@ public class Estadisticas{
     ***
     Tipo de Retorno: boolean
     ***
-    resta magia si supera el maximo y retorna un boolean si el jugador pudo gastar magia o no.
+    resta magia si existe suficiente MP y retorna un boolean si el jugador pudo gastar magia o no.
     */
     public boolean gastarMagia(int costoMagia){
         if(this.mpActual >= costoMagia){

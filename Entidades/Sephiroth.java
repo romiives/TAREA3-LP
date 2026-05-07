@@ -27,13 +27,13 @@ public class Sephiroth extends Enemigo{
     }
     /*
     ***
-    Parametro 1: None
+    Parametro 1: jugador
     ***
     Tipo de Retorno: None
     ***
     ejecuta el contador de supernova y avisa los ataques de sephiroth cada 10 turnos, si no hace un ataque normal no especial.
     */
-    public void lanzarSuperNova(){
+    public void lanzarSuperNova(Jugador jugador){
         contadorSuperNova++;
         if(contadorSuperNova>=10){
             System.out.println("Sephiroth ha lanzado SuperNova");

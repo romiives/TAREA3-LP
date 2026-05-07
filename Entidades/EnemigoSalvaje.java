@@ -62,7 +62,7 @@ public class EnemigoSalvaje extends Enemigo implements Vulnerable{
     agrega resistencia al enemigo.
     */ 
     public void agregarResistencia(Elemento elemento){
-        resistencia.add(elemento);
+        resistencias.add(elemento);
     }
     /*
     ***
@@ -72,7 +72,7 @@ public class EnemigoSalvaje extends Enemigo implements Vulnerable{
     ***
     añade inmunidad al enemigo.
     */
-    public void agregarInmunidad(){
+    public void agregarInmunidad(Elemento elemento){
         inmunidades.add(elemento);
     }
 }

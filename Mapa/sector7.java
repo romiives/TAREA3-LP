@@ -1,6 +1,7 @@
 package mapa;
 import java.util.Scanner;
 import entidades.*;
+import Componentes.*;
 public class Sector7 extends Zona{
     public Sector7(){
         this.nombre = "Sector 7";
@@ -19,7 +20,7 @@ public class Sector7 extends Zona{
         Scanner consola = new Scanner(System.in);
         System.out.println("\n=== Sector 7 ===");
         System.out.println("1. Descansar");
-        System.out.println("2. Iniciar Simulado Combate");
+        System.out.println("2. Iniciar Simulador Combate");
         System.out.println("3. Abrir tienda");
         System.out.print("Opcion: ");
         int opcion =consola.nextInt();
@@ -92,9 +93,9 @@ public class Sector7 extends Zona{
     public void comprarMejora(Jugador jugador, Mejora mejora){
         if(jugador.gastarChatarra(mejora.getCostoChatarra())){
             mejora.aplicarMejora(jugador.getStats());
-            System.out.println("Mejora aplicada")
+            System.out.println("Mejora aplicada");
         }else{
-            System.out.println("No hay chatarra disponible para la compra")
+            System.out.println("No hay chatarra disponible para la compra");
         }
     }
 }

@@ -32,7 +32,7 @@ public class Jugador{
         System.out.println("\n=== Estado del Jugador ===");
         System.out.println("Nombre: "+nombre);
         System.out.println("Nivel: "+nivel);
-        System.out.println("XP actual: "+xpActuaL);
+        System.out.println("XP actual: "+xpActual);
         System.out.println("Chatarra: "+chatarra);
         System.out.println("Limite actual: "+limiteActual);
         System.out.println("Vida: "+stats.getHpActual()+"/"+stats.getHpMaximo());
@@ -76,7 +76,7 @@ public class Jugador{
     ***
     aumenta la barra del limite en base al daño que cloud hace.
     */
-    public void cargarLimiteDanio(int cantidadDanio){
+    public void cargarLimitePorDanio(int cantidadDanio){
         this.limiteActual += cantidadDanio/5;
         if(this.limiteActual > 100){
             this.limiteActual = 100;
@@ -91,19 +91,19 @@ public class Jugador{
     aumenta la experiencia y el nivel.
     */
     public void recibirXP(int cantidadXP){
-        this.xpActuaL += cantidadXP;
+        this.xpActual += cantidadXP;
         int xpNecesaria = 10*nivel;
-        if(this.xpActuaL >= xpNecesaria){
-            this.xpActuaL = 0;
+        if(this.xpActual >= xpNecesaria){
+            this.xpActual = 0;
             this.nivel++;
             stats.aumentarStat(TipoStat.HP_MAX, 10);
             stats.aumentarStat(TipoStat.MP_MAX, 5);
-            stats.aumentarStat(tipoStat.FUERZA, 4);
+            stats.aumentarStat(TipoStat.FUERZA, 4);
             stats.aumentarMagia(6);
             System.out.println("Cloud ha subido de nivel al "+nivel);
         }
     }
-     /*
+    /*
     ***
     Parametro 1: int
     ***
@@ -251,7 +251,7 @@ public class Jugador{
             }
             int costoMP = 10+(5*cantidad);
             if(stats.gastarMagia(costoMP)){
-                return (int)(stats.getMagia*(1.0+(0.5*cantidad)));
+                return (int)(stats.getMagia()*(1.0+(0.5*cantidad)));
             }
             System.out.println("No hay suficiente MP");
             return 0;
@@ -264,7 +264,7 @@ public class Jugador{
         ***
         ataque fisico devastador que no usa MP.
         */
-        public int calculaDanioLimite(){
+        public int calcularDanioLimite(){
             if(limiteActual == 100){
                 limiteActual = 0;
                 return stats.getFuerza()*5;

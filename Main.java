@@ -45,7 +45,7 @@ public class Main {
                 juegoEjecucion = false;
                 System.out.println("Has salido del juego");
             } else{
-                System.out.println("Opción invalida");
+                System.out.println("Opcion invalida");
             }
             if(jugador.getPuntosVidaActual() <=0){
                 System.out.println("\nHas sido derrotado");
