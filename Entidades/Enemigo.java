@@ -161,7 +161,7 @@ public abstract class Enemigo{
                     }
                 }else if(enemigos.size()==3 && probabilidad <=33){
                     System.out.println("\nLos enemigos restantes estan atacando en conjunto");
-                    for(i=posicion+1;i<enemigos.size();i++){
+                    for(int i=posicion+1;i<enemigos.size();i++){
                         enemigos.get(i).atacar(jugador);
                     }
                 }
