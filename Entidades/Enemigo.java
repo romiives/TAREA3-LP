@@ -7,6 +7,7 @@ public abstract class Enemigo{
     protected int xpRecompensa;
     protected int chatarraRecompensa;
     protected Estadisticas stats;
+    protected static boolean ultimoCombateHuida = false;
     public Enemigo(String nombre, int hp, int fuerza, int xpRecompensa, int chatarraRecompensa){
         this.nombre = nombre;
         this.stats = new Estadisticas(hp, 0, fuerza, 0);
@@ -66,6 +67,7 @@ public abstract class Enemigo{
      */
     public static boolean iniciarCombate(Jugador jugador, Enemigo enemigo, boolean permitirHuir){
         Scanner consola = new Scanner(System.in);
+        ultimoCombateHuida = false;
         while(jugador.getPuntosVidaActual()>0 && enemigo.getHpActual()>0){
             System.out.println("\n--- TU TURNO ---");
             System.out.println("Cloud HP: " +jugador.getPuntosVidaActual()+"/"+jugador.getStats().getHpMaximo());
@@ -112,6 +114,7 @@ public abstract class Enemigo{
                 int probabilidad = (int)(Math.random()*100)+1;
                 if(probabilidad <=50){
                     System.out.println("Cloud ha logrado huir");
+                    ultimoCombateHuida = true;
                     return true;
                 } else{
                     System.out.println("Cloud no pudo huir");
@@ -148,6 +151,9 @@ public abstract class Enemigo{
     public static boolean iniciarCombateGrupo(Jugador jugador, ArrayList<Enemigo> enemigos){
         for(int posicion =0; posicion<enemigos.size(); posicion++){
             boolean resultado = iniciarCombate(jugador, enemigos.get(posicion), true);
+            if(ultimoCombateHuida){
+                return true;
+            }
             if(!resultado){
                 return false;
             }
@@ -172,8 +178,6 @@ public abstract class Enemigo{
         }
         return true;
     }
-    
-
 
 
 

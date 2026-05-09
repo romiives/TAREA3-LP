@@ -107,7 +107,8 @@ public class Gongaga extends Zona{
     public void encontrarMateria(Jugador jugador){
         int posicion = (int)(Math.random()*poolMaterias.size());
         Materia materia = poolMaterias.get(posicion);
-        System.out.println("Cloud encontro una materia: "+materia.getNombre());
+        System.out.println("\nCloud ha encontrado una materia mientras exploraba");
+        System.out.println("Materia encontrada: "+materia.getNombre());
         jugador.agregarMateria(materia);
    }
    /*
