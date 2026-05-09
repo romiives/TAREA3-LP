@@ -178,23 +178,6 @@ public abstract class Enemigo{
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*
     ***
     Parametro 1: jugador
@@ -234,5 +217,8 @@ public abstract class Enemigo{
     */
     public int getHpActual(){
         return stats.getHpActual();
+    }
+    public static boolean getUltimoCombateHuida(){
+        return ultimoCombateHuida;
     }
 }

@@ -32,6 +32,10 @@ public class Gongaga extends Zona{
             ArrayList<Enemigo> grupoEnemigos = generarGrupoEnemigo();
             for(int posicion =0; posicion < grupoEnemigos.size(); posicion++){
                 boolean resultado = Enemigo.iniciarCombateGrupo(jugador, grupoEnemigos);
+                if(Enemigo.getUltimoCombateHuida()){
+                    System.out.println("\nCloud ha logrado escapar de Gongaga");
+                    return;
+                }
                 if(!resultado){
                     return;
                 }
