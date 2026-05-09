@@ -1,5 +1,6 @@
 package Entidades;
 import java.util.ArrayList;
+import java.util.Scanner;
 import Componentes.*;
 public class Jugador{
     private String nombre;
@@ -205,6 +206,51 @@ public class Jugador{
     public int getXpActual(){
         return xpActual;
     }
+    /*
+    ***
+    Parametro 1: None
+    ***
+    Tipo de Retorno: None
+    ***
+    muestra la mochila con las materias y equipa una en el arma.
+    */
+    public void mostrarMochila(){
+        Scanner consola = new Scanner(System.in);
+        if(mochila.size()==0){
+            System.out.println("\nLa mochila esta vacia");
+            return;
+        }
+        System.out.println("\n=== MOCHILA ===");
+        for(int i=0;i<mochila.size();i++){
+            System.out.println((i+1)+". "+mochila.get(i).getNombre());
+        }
+        System.out.println("0. Volver");
+        System.out.println("Seleccione una materia para equipar: ");
+        int opcion = consola.nextInt();
+        if(opcion >0 && opcion <=mochila.size()){
+            Materia materia = mochila.get(opcion -1);
+            equiparMateria(materia);
+        } 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     Clase Arma anidada
     */

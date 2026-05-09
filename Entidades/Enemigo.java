@@ -1,5 +1,6 @@
 package Entidades;
 import java.util.Scanner;
+import java.util.ArrayList;
 import Componentes.*;
 public abstract class Enemigo{
     protected String nombre;
@@ -135,6 +136,61 @@ public abstract class Enemigo{
         }
         return jugador.getPuntosVidaActual()>0;
     }
+    /*
+    ***
+    Parametro 1: jugador
+    Parametro 2: enemigos
+    ***
+    Tipo de Retorno: boolean
+    ***
+    realiza los combates contra un grupo de enemigos con la porbalidad de ataque en conjunto.
+    */
+    public static boolean iniciarCombateGrupo(Jugador jugador, ArrayList<Enemigo> enemigos){
+        for(int posicion =0; posicion<enemigos.size(); posicion++){
+            boolean resultado = iniciarCombate(jugador, enemigos.get(posicion), true);
+            if(!resultado){
+                return false;
+            }
+            int enemigosRestantes = enemigos.size()-posicion -1;
+            if(enemigosRestantes>0){
+                int probabilidad = (int)(Math.random()*100)+1;
+                if(enemigos.size()==2 && probabilidad<=50){
+                    System.out.println("\nLos enemigos restantes estan atacando en conjunto");
+                    for(int i=posicion+1;i<enemigos.size();i++){
+                        enemigos.get(i).atacar(jugador);
+                    }
+                }else if(enemigos.size()==3 && probabilidad <=33){
+                    System.out.println("\nLos enemigos restantes estan atacando en conjunto");
+                    for(i=posicion+1;i<enemigos.size();i++){
+                        enemigos.get(i).atacar(jugador);
+                    }
+                }
+                if(jugador.getPuntosVidaActual()<=0){
+                    return false;
+                }  
+            }
+        }
+        return true;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     ***
     Parametro 1: jugador

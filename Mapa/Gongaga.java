@@ -31,7 +31,7 @@ public class Gongaga extends Zona{
             System.out.println("Cloud esta siendo emboscado por enemigos");
             ArrayList<Enemigo> grupoEnemigos = generarGrupoEnemigo();
             for(int posicion =0; posicion < grupoEnemigos.size(); posicion++){
-                boolean resultado = Enemigo.iniciarCombate(jugador, grupoEnemigos.get(posicion), true);
+                boolean resultado = Enemigo.iniciarCombate(jugador, grupoEnemigos);
                 if(!resultado){
                     return;
                 }

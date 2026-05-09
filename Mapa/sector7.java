@@ -28,10 +28,11 @@ public class Sector7 extends Zona{
         System.out.println("1. Entrar al simulador de combate");
         System.out.println("2. Descansar en la Posada (Recuperar HP/MP)");
         System.out.println("3. Ver estadisticas de Cloud");
-        System.out.println("4. Viajar a Gongaga");
-        System.out.println("5. Viajar al Nucleo del Planeta");
-        System.out.println("6. Abrir Tienda");
-        System.out.println("7. Salir del juego");
+        System.out.println("4. Ver Mochila / Equipar materia");
+        System.out.println("5. Viajar a Gongaga");
+        System.out.println("6. Viajar al Nucleo del Planeta");
+        System.out.println("7. Abrir Tienda");
+        System.out.println("8. Salir del juego");
         System.out.print("Opcion: ");
         int opcion =consola.nextInt();
         if(opcion ==1){
@@ -42,6 +43,8 @@ public class Sector7 extends Zona{
         }else if(opcion ==3){
             jugador.mostrarEstado();
         }else if(opcion ==4){
+            jugador.mostrarMochila();
+        }else if(opcion ==5){
             Zona gongaga = new Gongaga();
             if(gongaga.validarAcceso(jugador)){
                 this.siguienteZona = gongaga;
@@ -49,7 +52,7 @@ public class Sector7 extends Zona{
             }else{
                 System.out.println("No tienes el nivel necesario");
             }
-        }else if(opcion ==5){
+        }else if(opcion ==6){
             Zona nucleo = new NucleoPlaneta();
             if(nucleo.validarAcceso(jugador)){
                 this.siguienteZona = nucleo;
@@ -57,9 +60,9 @@ public class Sector7 extends Zona{
             }else{
                 System.out.println("No tienes el nivel necesario");
             }
-        }else if(opcion ==6){
-            abrirTienda(jugador);
         }else if(opcion ==7){
+            abrirTienda(jugador);
+        }else if(opcion ==8){
             System.out.println("Has salido del juego");
             System.exit(0);
         }else{
