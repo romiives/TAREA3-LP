@@ -19,6 +19,7 @@ public class Sector7 extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
+        @SuppressWarnings("resource")
         Scanner consola = new Scanner(System.in);
         System.out.println("\n======================================");
         System.out.println("ZONA: Sector 7 | NIVEL: "+jugador.getNivel());
@@ -79,10 +80,19 @@ public class Sector7 extends Zona{
     ejecuta el simulador del combate en el sector 7, contra soldado común. 
     */
     public void iniciarSimulador(Jugador jugador){
-        EnemigoSimulador soldado = new EnemigoSimulador();
+        int probabilidad =(int)(Math.random()*100)+1;
         System.out.println("\n>>> INICIANDO SIMULADOR DE COMBATE <<<");
-        System.out.println("Aparece un Soldado Holografico (HP: 50)");
-        Enemigo.iniciarCombate(jugador, soldado, false);
+        if(probabilidad<=90){
+            EnemigoSimulador soldado = new EnemigoSimulador();
+            System.out.println("Aparece un Soldado Holografico (HP: 50)");
+            Enemigo.iniciarCombate(jugador, soldado, false);
+        }else{
+            java.util.ArrayList<Enemigo> enemigos=new java.util.ArrayList<Enemigo>();
+            enemigos.add(new EnemigoSimulador());
+            enemigos.add(new EnemigoSimulador());
+            System.out.println("Aparecen 2 Soldados Holograficos");
+            Enemigo.iniciarCombateGrupo(jugador, enemigos);
+        }
         if(jugador.getPuntosVidaActual()<=0){
             jugador.restaurarPuntos();
             System.out.println("Cloud ha sido restaurado");
@@ -99,6 +109,7 @@ public class Sector7 extends Zona{
     manipula la tienda del sector 7 de la chatarra
     */
     public void abrirTienda(Jugador jugador){
+        @SuppressWarnings("resource")
         Scanner consola =new Scanner(System.in);
         Mejora mejoraVida =new Mejora("Mejora de Vitalidad", TipoStat.HP_MAX, 20, 100);
         Mejora mejoraMagia =new Mejora("Mejora de Eter", TipoStat.MP_MAX, 10, 120);

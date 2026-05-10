@@ -96,7 +96,7 @@ public class Jugador{
         this.xpActual += cantidadXP;
         int xpNecesaria = 10*nivel;
         if(this.xpActual >= xpNecesaria){
-            this.xpActual = 0;
+            this.xpActual -=xpNecesaria;
             this.nivel++;
             stats.aumentarStat(TipoStat.HP_MAX, 10);
             stats.aumentarStat(TipoStat.MP_MAX, 5);
@@ -217,6 +217,7 @@ public class Jugador{
     muestra la mochila con las materias y equipa una en el arma.
      */
     public void mostrarMochila(){
+        @SuppressWarnings("resource")
         Scanner consola = new Scanner(System.in);
         if(mochila.size()==0){
             System.out.println("\nLa mochila esta vacia");
@@ -275,11 +276,11 @@ public class Jugador{
             if(materiasEquipadas.size()==0){
                 System.out.println("Materias equipadas: ninguna");
             }else{
-                System.out.println("Materias equipadas: ");
+                System.out.print("Materias equipadas: ");
                 for(int i=0;i<materiasEquipadas.size();i++){
-                    System.out.println(materiasEquipadas.get(i).getNombre());
+                    System.out.print(materiasEquipadas.get(i).getNombre());
                     if(i<materiasEquipadas.size()-1){
-                        System.out.println(", ");
+                        System.out.print(", ");
                     }
                 }
                 System.out.println();

@@ -25,6 +25,7 @@ public class Gongaga extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
+        @SuppressWarnings("resource")
         java.util.Scanner consola=new java.util.Scanner(System.in);
         jugadorHuir=false;
         System.out.println("\n========== GONGAGA ==========");

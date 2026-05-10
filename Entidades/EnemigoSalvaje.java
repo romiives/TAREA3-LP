@@ -28,7 +28,7 @@ public class EnemigoSalvaje extends Enemigo implements Vulnerable{
     ***
     Tipo de Retorno: double
     ***
-    evalua al enemigo.
+    evalua al enemigo y el tipo de sus debilidades.
     */
     public double evaluarDebilidad(Elemento elemento){
         if(inmunidades.contains(elemento)){
