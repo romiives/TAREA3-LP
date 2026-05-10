@@ -4,9 +4,11 @@ import Entidades.*;
 import Componentes.*;
 public class Gongaga extends Zona{
     private ArrayList<Materia> poolMaterias;
+    private boolean jugadorHuir;
     public Gongaga(){
         this.nombre = "Gongaga";
         this.nivelRequerido = 5;
+        this.jugadorHuir = false;
         this.poolMaterias = new ArrayList<Materia>();
         poolMaterias.add(new Materia("Fuego", Elemento.FUEGO));
         poolMaterias.add(new Materia("Hielo", Elemento.HIELO));
@@ -23,6 +25,7 @@ public class Gongaga extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
+        jugadorHuir = false;
         int evento =(int)(Math.random()*100)+1;
         System.out.println("\nEl jugador explora la Gongaga");
         if(evento <= 30){
@@ -33,6 +36,7 @@ public class Gongaga extends Zona{
             boolean resultado = Enemigo.iniciarCombateGrupo(jugador, grupoEnemigos);
             if(Enemigo.getUltimoCombateHuida()){
                 System.out.println("\nCloud ha logrado escapar de Gongaga");
+                this.jugadorHuir = true;
                 return;
             }
             if(!resultado){
@@ -134,5 +138,8 @@ public class Gongaga extends Zona{
    */
    public int generarChatarraSalvaje(){
     return 50+(int)(Math.random()*26);
+   }
+   public boolean getJugadorHuir(){
+    return jugadorHuir;
    }
 }
