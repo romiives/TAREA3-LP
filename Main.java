@@ -8,6 +8,11 @@ public class Main {
         System.out.println("=== JUEGO - La Amenaza de Sephiroth ===");
         while(juegoEjecucion){
             zonaActual.accionZona(jugador);
+            if(zonaActual instanceof Gongaga){
+                if(((Gongaga)zonaActual).getJugadorHuir()){
+                    zonaActual = new Sector7();
+                }
+            }
             if(zonaActual instanceof Sector7){
                 zonaActual =((Sector7) zonaActual).getSiguienteZona();
             }
