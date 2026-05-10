@@ -16,4 +16,3 @@ Métodos:
 Seguir estos pasos:
 - make
 - make run
-- make clean
