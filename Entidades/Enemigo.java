@@ -157,7 +157,7 @@ public abstract class Enemigo{
             if(!resultado){
                 return false;
             }
-            int enemigosRestantes = enemigos.size()-posicion -1;
+            int enemigosRestantes=enemigos.size()-posicion -1;
             if(enemigosRestantes>0){
                 int probabilidad = (int)(Math.random()*100)+1;
                 if(enemigos.size()==2 && probabilidad<=50){

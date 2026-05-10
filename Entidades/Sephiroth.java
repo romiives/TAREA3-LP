@@ -20,7 +20,7 @@ public class Sephiroth extends Enemigo{
             int danio =(int)(stats.getFuerza()*1.25);
             System.out.println("Sephiroth ataca a Cloud");
             jugador.danioRecibido(danio);
-            System.out.println("Cloud recibio " + danio + " de danio");
+            System.out.println("Cloud recibio " + danio + " de daño");
         } else{
             System.out.println("Sephiroth fallo el ataque");
         }
