@@ -12,7 +12,7 @@ Métodos:
 # Enemigos en Sector 7
 - aplique probabilidad en los enemigos de este sector, con un 90% de ocurrencia para combate con un enemigo holográfico y un 10% para combate en grupo, es decir, cloud se enfrenta a dos enemigos holográficos.
 
-# Ejecuión
+# Ejecución
 Seguir estos pasos:
 - make
 - make run
