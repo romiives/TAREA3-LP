@@ -24,6 +24,7 @@ public class Sector7 extends Zona{
         System.out.println("ZONA: Sector 7 | NIVEL: "+jugador.getNivel());
         System.out.println("HP: "+jugador.getStats().getHpActual()+"/"+jugador.getStats().getHpMaximo()+" | MP: "+jugador.getStats().getMpActual()+"/"+jugador.getStats().getMpMaximo());
         System.out.println("EXP: "+jugador.getXpActual()+"/"+(10*jugador.getNivel())+" | MATERIAS EQUIPADAS: "+jugador.getCantidadMateriasEquipadas()+"/5");
+        System.out.println("CHATARRA: "+jugador.getChatarra());
         System.out.println("======================================");
         System.out.println("1. Entrar al simulador de combate");
         System.out.println("2. Descansar en la Posada (Recuperar HP/MP)");
@@ -131,6 +132,7 @@ public class Sector7 extends Zona{
         if(jugador.gastarChatarra(mejora.getCostoChatarra())){
             mejora.aplicarMejora(jugador.getStats());
             System.out.println("Mejora aplicada");
+            System.out.println("Chatarra restante: "+jugador.getChatarra());
         }else{
             System.out.println("No hay chatarra disponible para la compra");
         }

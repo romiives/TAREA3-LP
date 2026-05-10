@@ -37,9 +37,11 @@ public class Jugador{
         System.out.println("Nivel: " +nivel);
         System.out.println("HP: "+stats.getHpActual()+"/"+stats.getHpMaximo()+" | MP: "+stats.getMpActual()+"/"+stats.getMpMaximo());
         System.out.println("EXP: "+xpActual+"/"+(10 * nivel)+" | MATERIAS EQUIPADAS: "+busterSword.getCantidadMaterias()+"/5");
+        System.out.println("Chatarra: "+chatarra);
         System.out.println("--------------------------------------");
         System.out.println("Fuerza: "+stats.getFuerza()+" | Magia: "+stats.getMagia());
         System.out.println("Arma equipada: Buster Sword");
+        busterSword.mostrarMateriasEquipadas();
         System.out.println("--------------------------------------");
     }
     /*
@@ -213,7 +215,7 @@ public class Jugador{
     Tipo de Retorno: None
     ***
     muestra la mochila con las materias y equipa una en el arma.
-    */
+     */
     public void mostrarMochila(){
         Scanner consola = new Scanner(System.in);
         if(mochila.size()==0){
@@ -232,25 +234,9 @@ public class Jugador{
             equiparMateria(materia);
         } 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public int getChatarra(){
+        return chatarra;
+    }
     /*
     Clase Arma anidada
     */
@@ -275,6 +261,28 @@ public class Jugador{
                 System.out.println("La materia equipada en " +nombre+":"+materia.getNombre());
             } else{
                 System.out.println("No hay espacio disponible");
+            }
+        }
+        /*
+        ***
+        Parametro 1: None
+        ***
+        Tipo de Retorno: None
+        ***
+        muestra las materias que se equiparon
+        */
+        public void mostrarMateriasEquipadas(){
+            if(materiasEquipadas.size()==0){
+                System.out.println("Materias equipadas: ninguna");
+            }else{
+                System.out.println("Materias equipadas: ");
+                for(int i=0;i<materiasEquipadas.size();i++){
+                    System.out.println(materiasEquipadas.get(i).getNombre());
+                    if(i<materiasEquipadas.size()-1){
+                        System.out.println(", ");
+                    }
+                }
+                System.out.println();
             }
         }
         /*

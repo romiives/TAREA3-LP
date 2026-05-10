@@ -25,24 +25,40 @@ public class Gongaga extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
-        jugadorHuir = false;
-        int evento =(int)(Math.random()*100)+1;
+        java.util.Scanner consola=new java.util.Scanner(System.in);
+        jugadorHuir=false;
+        System.out.println("\n========== GONGAGA ==========");
+        System.out.println("1. Explorar Gongaga");
+        System.out.println("2. Volver al Sector 7");
+        System.out.print("Opcion: ");
+        int opcion=consola.nextInt();
+        if(opcion==2){
+            this.jugadorHuir=true;
+            System.out.println("Cloud regresa al Sector 7");
+            return;
+        }
+        if(opcion!=1){
+            System.out.println("Opcion invalida");
+            return;
+        }
+        int evento=(int)(Math.random()*100)+1;
         System.out.println("\nEl jugador explora la Gongaga");
         if(evento <= 30){
             encontrarMateria(jugador);
+
         } else{
             System.out.println("Cloud esta siendo emboscado por enemigos");
-            ArrayList<Enemigo> grupoEnemigos = generarGrupoEnemigo();
-            boolean resultado = Enemigo.iniciarCombateGrupo(jugador, grupoEnemigos);
+            ArrayList<Enemigo> grupoEnemigos=generarGrupoEnemigo();
+            boolean resultado=Enemigo.iniciarCombateGrupo(jugador, grupoEnemigos);
             if(Enemigo.getUltimoCombateHuida()){
                 System.out.println("\nCloud ha logrado escapar de Gongaga");
-                this.jugadorHuir = true;
+                this.jugadorHuir=true;
                 return;
             }
             if(!resultado){
                 return;
             }
-        }
+        }    
    }
     /*
     ***
