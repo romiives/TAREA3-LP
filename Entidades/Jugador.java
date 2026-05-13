@@ -217,8 +217,6 @@ public class Jugador{
     muestra la mochila con las materias y equipa una en el arma.
      */
     public void mostrarMochila(){
-        @SuppressWarnings("resource")
-        Scanner consola = new Scanner(System.in);
         if(mochila.size()==0){
             System.out.println("\nLa mochila esta vacia");
             return;
