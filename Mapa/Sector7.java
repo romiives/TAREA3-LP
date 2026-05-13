@@ -4,8 +4,8 @@ import Entidades.*;
 import Componentes.*;
 public class Sector7 extends Zona{
     private Zona siguienteZona;
-    public Sector7(Scanner consola){
-        super(consola);
+    public Sector7(){
+        super();
         this.nombre = "Sector 7";
         this.nivelRequerido = 1;
         this.siguienteZona = this;
@@ -20,6 +20,8 @@ public class Sector7 extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
+        @SuppressWarnings("resource")
+        Scanner consola = new Scanner(System.in);
         System.out.println("\n======================================");
         System.out.println("ZONA: Sector 7 | NIVEL: "+jugador.getNivel());
         System.out.println("HP: "+jugador.getStats().getHpActual()+"/"+jugador.getStats().getHpMaximo()+" | MP: "+jugador.getStats().getMpActual()+"/"+jugador.getStats().getMpMaximo());
@@ -108,6 +110,8 @@ public class Sector7 extends Zona{
     manipula la tienda del sector 7 de la chatarra
     */
     public void abrirTienda(Jugador jugador){
+        @SuppressWarnings("resource")
+        Scanner consola =new Scanner(System.in);
         Mejora mejoraVida =new Mejora("Mejora de Vitalidad", TipoStat.HP_MAX, 20, 100);
         Mejora mejoraMagia =new Mejora("Mejora de Eter", TipoStat.MP_MAX, 10, 120);
         Mejora mejoraFuerza =new Mejora("Mejora Fisica", TipoStat.FUERZA, 10, 150);

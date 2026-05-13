@@ -66,6 +66,8 @@ public abstract class Enemigo{
     inicia el combate entre cloud y un enemigo, retornado un boolean segun el caso.
      */
     public static boolean iniciarCombate(Jugador jugador, Enemigo enemigo, boolean permitirHuir){
+        @SuppressWarnings("resource")
+        Scanner consola = new Scanner(System.in);
         ultimoCombateHuida = false;
         while(jugador.getPuntosVidaActual()>0 && enemigo.getHpActual()>0){
             System.out.println("\n--- TU TURNO ---");

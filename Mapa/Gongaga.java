@@ -1,14 +1,12 @@
 package Mapa;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import Entidades.*;
 import Componentes.*;
 public class Gongaga extends Zona{
     private ArrayList<Materia> poolMaterias;
     private boolean jugadorHuir;
-    public Gongaga(Scanner consola){
-        super(consola);
+    public Gongaga(){
+        super();
         this.nombre = "Gongaga";
         this.nivelRequerido = 5;
         this.jugadorHuir = false;
@@ -28,6 +26,8 @@ public class Gongaga extends Zona{
     */
     @Override
     public void accionZona(Jugador jugador){
+        @SuppressWarnings("resource")
+        java.util.Scanner consola=new java.util.Scanner(System.in);
         jugadorHuir=false;
         System.out.println("\n========== GONGAGA ==========");
         System.out.println("1. Explorar Gongaga");

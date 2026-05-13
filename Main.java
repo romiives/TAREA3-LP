@@ -1,11 +1,9 @@
 import Mapa.*;
-import java.util.Scanner;
 import Entidades.*;
 public class Main {
     public static void main(String[] datos){
-        Scanner consola = new Scanner(System.in);
         Jugador jugador = new Jugador("Cloud");
-        Zona zonaActual = new Sector7(consola);
+        Zona zonaActual = new Sector7();
         boolean juegoEjecucion = true;
         System.out.println("=== JUEGO - La Amenaza de Sephiroth ===");
         while(juegoEjecucion){

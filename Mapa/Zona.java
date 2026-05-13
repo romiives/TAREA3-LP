@@ -1,15 +1,12 @@
 package Mapa;
 import java.util.ArrayList;
-import java.util.Scanner;
 import Entidades.Jugador;
 import Entidades.Enemigo;
 public abstract class Zona{
     protected String nombre;
     protected int nivelRequerido;
     protected ArrayList<Enemigo> enemigosDisponibles;
-    protected Scanner consola;
-    public Zona(Scanner consola){
-        this.consola = consola;
+    public Zona(){
         this.enemigosDisponibles = new ArrayList<Enemigo>();
     }
     public String getNombre(){
